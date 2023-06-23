@@ -8,6 +8,13 @@ ID_VENDOR="0x0eef"
 ID_PRODUCT="0x0001"
 BCD_DEVICE="0x0100"
 BCD_USB="0x0100"
+
+#bDeviceClass, bDeviceSubClass, bDeviceProtocol are set to allow the device to be recognized by Windows as well
+#for further information see "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/enumeration-of-the-composite-parent-device"
+BDEVICE_CLASS="0xef"
+BDEVICE_SUBCLASS="0x02"
+BDEVICE_PROTOCOL="0x01"
+
 MANUFACTURER="Example Manufacturer"
 PRODUCT="Example Product"
 MAX_POWER=100
@@ -24,6 +31,9 @@ echo $ID_VENDOR > $USB_HID_PATH/idVendor
 echo $ID_PRODUCT > $USB_HID_PATH/idProduct
 echo $BCD_DEVICE > $USB_HID_PATH/bcdDevice
 echo $BCD_USB > $USB_HID_PATH/bcdUSB
+echo $BDEVICE_CLASS > $USB_HID_PATH/bDeviceClass
+echo $BDEVICE_SUBCLASS > $USB_HID_PATH/bDeviceSubClass
+echo $BDEVICE_PROTOCOL > $USB_HID_PATH/bDeviceProtocol
 mkdir -p $USB_HID_PATH/strings/0x409
 echo $MANUFACTURER > $USB_HID_PATH/strings/0x409/manufacturer
 echo $PRODUCT > $USB_HID_PATH/strings/0x409/product
